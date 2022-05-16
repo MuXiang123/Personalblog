@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<link >
+<head>
+    <meta charset="UTF-8">
+    <title>管理员登录</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <style type="text/css">
+        body {
+            -webkit-font-smoothing: antialiased;
+            font-size: 15px;
+            font-family: "微软雅黑","宋体",Arial;
+            /*背景图片*/
+            background: #205424 url(https://api.dujin.org/bing/1366.php) no-repeat top
+            center fixed;
+            background-size: cover;
+        }
+        input{
+            margin-top: 5px!important;
+            border-radius: 25px!important;
+        }
+        .ui.container {
+            margin-top: 6rem;
+            max-width: 22rem !important;
+        }
+
+        .ui.large.form > .field:first-child {
+            margin-bottom: 0;
+        }
+        .label_color{
+            color: white!important;
+        }
+    </style>
+</head>
+
+<body id="root">
+<div class="ui center aligned grid">
+    <div class="ui container">
+        <div class="ui label circular">
+            <h3>欢迎！请登录</h3>
+        </div>
+<!--        登录表单-->
+        <form class="ui large form" method="post" action="#">
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="username" placeholder="用户名">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input type="password" name="password" placeholder="密码">
+                </div>
+            </div>
+            <button class="ui fluid large primary circular button">登 录</button>
+
+            <div class="ui error mini message"></div>
+            <div class="ui mini negative message" >用户名和密码错误</div>
+
+        </form>
+    </div>
+</div>
+<script>
+    // 表单验证
+    $('.ui.form').form({
+        fields : {
+            username : {
+                identifier: 'username',
+                rules: [{
+                    type : 'empty',
+                    prompt: '请输入用户名'
+                }]
+            },
+            password : {
+                identifier: 'password',
+                rules: [{
+                    type : 'empty',
+                    prompt: '请输入密码'
+                }]
+            }
+        }
+    });
+
+</script>
+<script src="../../static/js/jquery.min.js"></script>
+<script src="../../static/js/semantic.min.js"></script>
+</body>
+</html>

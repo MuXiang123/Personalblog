@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no"
+    />
+    <meta
+            name="description"
+            content="Semantic-UI-Forest, collection of design, themes and templates for Semantic-UI."
+    />
+    <meta name="keywords" content="Semantic-UI, Theme, Design, Template"/>
+    <meta name="author" content="PPType"/>
+    <meta name="theme-color" content="#ffffff"/>
+    <title>主页</title>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+            type="text/css"
+    />
+
+    <style type="text/css">
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-font-smoothing: grayscale;
+        }
+
+        #content h1 {
+            font-size: 36px;
+        }
+        .ui.borderless.menu {
+            box-shadow: none;
+            flex-wrap: wrap;
+            border: none;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    </style>
+</head>
+
+<body id="root">
+<!--顶部导航栏-->
+<div class="ui tablet computer only padded grid">
+    <div class="ui container">
+        <div class="ui inverted borderless top fixed fluid tabular menu">
+            <h2 class="ui header item">博客后台管理</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>文章管理</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="tasks icon"></i>分类管理</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="tag icon"></i>分类管理</a>
+            <div class="right m-item m-mobile-hide menu">
+                <div class="ui dropdown  item">
+                    <div class="text">
+                        <img class="ui avatar image" src="../../static/img/bg.png">
+                        <span>oneStar</span>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--中间内容-->
+<br>
+<br>
+<br>
+<br>
+
+<div class="m-padded-tb-massivex">
+    <div class="ui container">
+        <div class="ui success large  message">
+            <p align="center">念念不忘，必有回响</p>
+        </div>
+
+<!--        <img  alt="" class="ui rounded bordered fluid image">-->
+    </div>
+</div>
+
+<!--底部栏-->
+<footer class="ui inverted vertical segment m-padded-tb-massive m-opacity">
+    <!--容器-->
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+<!--统计博客各类数据-->
+            <div class="four wide column">
+                <div class="item">
+                    <div class="ui inverted statistic">
+                        <div class="value">
+                            22
+                        </div>
+                        <div class="label">
+                            文章总数
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="four wide column">
+                <div class="item">
+                    <div class="ui inverted statistic">
+                        <div class="value">
+                            22
+                        </div>
+                        <div class="label">
+                            访问总数
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="four wide column">
+                <div class="item">
+                    <div class="ui inverted statistic">
+                        <div class="value">
+                            22
+                        </div>
+                        <div class="label">
+                            评论总数
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="four wide column">
+                <div class="item">
+                    <div class="ui inverted statistic">
+                        <div class="value">
+                            22
+                        </div>
+                        <div class="label">
+                            留言总数
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ui inverted section divider"></div>
+<!--        统计博客运行实践，从入学时间开始-->
+        <div style="color: honeydew" ; class="m-text-thin m-text-spaced m-text-lined m-opacity-mini">博客已经运行：<span
+                id="htmer_time" class="item m-text-thin"></span></div>
+    </div>
+
+</footer>
+
+
+<script src="../../static/js/jquery.min.js"></script>
+<script src="../../static/js/semantic.min.js"></script>
+<!--气泡背景-->
+<script src="https://cdn.jsdelivr.net/npm/bubbly-bg@1.0.0/dist/bubbly-bg.js"></script>
+<script>bubbly();</script>
+<!-- 看板娘 -->
+<script src="https://l2dwidget.js.org//lib/L2Dwidget.min.js"></script>
+<script type="text/javascript">
+    L2Dwidget
+        .on('*', (name) => {
+            console.log('%c EVENT ' + '%c -> ' + name, 'background: #222; color: yellow', 'background: #fff; color: #000')
+        })
+        .init({
+            dialog: {
+                enable: true,
+                script: {
+                    'every idle 5s': '$hitokoto$',
+                    'hover .star': '星星在天上而你在我心里 (*/ω＼*)',
+                    'tap body': '哎呀！别碰我！',
+                    'tap face': '人家已经不是小孩子了！'
+                }
+            },
+            "model": {
+                <!-- jsonpath控制显示那个小萝莉模型 -->
+                jsonPath: "https://unpkg.com/live2d-widget-model-z16@1.0.5/assets/z16.model.json",
+                "scale": 1
+            },
+            "display": {
+                "position": "right", //看板娘的表现位置
+                "width": 170, //小萝莉的宽度
+                "height": 300, //小萝莉的高度
+                "hOffset": 0,
+                "vOffset": -20
+            },
+            "mobile": {
+                "show": true,
+                "scale": 0.5
+            },
+            "react": {
+                "opacityDefault": 0.7,
+                "opacityOnHover": 0.2
+            }
+        });
+</script>
+
+<script>
+    // 运行时间统计
+    function secondToDate(second) {
+        if (!second) {
+            return 0;
+        }
+        var time = new Array(0, 0, 0, 0, 0);
+        if (second >= 365 * 24 * 3600) {
+            time[0] = parseInt(second / (365 * 24 * 3600));
+            second %= 365 * 24 * 3600;
+        }
+        if (second >= 24 * 3600) {
+            time[1] = parseInt(second / (24 * 3600));
+            second %= 24 * 3600;
+        }
+        if (second >= 3600) {
+            time[2] = parseInt(second / 3600);
+            second %= 3600;
+        }
+        if (second >= 60) {
+            time[3] = parseInt(second / 60);
+            second %= 60;
+        }
+        if (second > 0) {
+            time[4] = second;
+        }
+        return time;
+    }
+
+    function setTime() {
+        /*此处为网站的创建时间*/
+        var create_time = Math.round(new Date(Date.UTC(2019, 9, 5, 0, 0, 0)).getTime() / 1000);
+        var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+        currentTime = secondToDate((timestamp - create_time));
+        currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'
+            + currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
+            + '秒';
+        document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+    }
+
+    setInterval(setTime, 1000);
+
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    });
+</script>
+</body>
+</html>

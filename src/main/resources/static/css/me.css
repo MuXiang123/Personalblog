@@ -1,0 +1,53 @@
+body{
+    background: url("../img/bg.png");
+}
+
+
+.m-padded-tb-massive {
+    padding-top: 5em !important;
+    padding-bottom: 5em !important;
+}
+.m-padded-tb-large {
+    padding-top: 2em !important;
+    padding-bottom: 2em !important;
+}
+.m-padded-mini{
+    padding: 0.3em !important;
+}
+.m-padded-tb-tiny{
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+}
+
+
+.m-margin-tb-tiny{
+    margin-bottom: 0.5em !important;
+    margin-top: 0.5em !important;
+}
+
+
+
+.m-text-thin{
+    font-weight: 300 !important;
+}
+.m-text-spaced{
+    letter-spacing: 1px !important;
+}
+.m-text-lined{
+    line-height: 1.8;
+}
+.m-opacity-mini{
+    opacity: 0.8;
+}
+
+
+.m-inline-block
+{
+    display: inline-block !important;
+}
+
+
+
+.m-black{
+    color: #333 !important;
+}
