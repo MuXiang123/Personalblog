@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--移动门端缩放页面-->
+  <title th:replace="${title}">博客详情</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css">
+  <link href="../../../../../../微信/WeChat%20Files/wxid_4q6siwriv0zq21/FileStorage/File/2022-05/src/main/resources/static/css/me.css"
+        rel="stylesheet" th:href="@{/css/me.css}">
+</head>
+<body>
+
+<!--顶部-->
+<nav th:fragment="menu(n)" class="ui inverted attached segment">
+  <div class="ui menu inverted secondary stackable">
+    <div class="ui container">
+      <h2 class="ui teal header item">城院TOP博客</h2>
+      <a href="" class="item" th:classappend="${n==1} ?'active'"><i class="home icon"></i>首页</a>
+      <a href="" class="item" th:classappend="${n==2} ?'active'"><i class="idea icon"></i>分类</a>
+      <a href="" class="item" th:classappend="${n==3} ?'active'"><i class="tags icon"></i>标签</a>
+      <a href="" class="item" th:classappend="${n==4} ?'active'"><i class="clone icon"></i>归档</a>
+      <a href="" class="item" th:classappend="${n==5} ?'active'"><i class="info icon"></i>关于我</a>
+      <div class="right item">
+        <div class="ui item input transparent inverted">
+          <input type="text" placeholder="Search..">
+          <i class="search icon link"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!--底部-->
+<footer class="ui inverted segment vertical m-padded-tb-massive" th:fragment="footer">
+  <div class="ui container center aligned">
+    <div class="ui grid inverted divided stackable">
+      <div class="three wide column">
+        <div class="item">
+          <img class="ui rounded image" src="../../static/img/xys.jpg" style="width:100px" th:src="@{/img/xys.jpg}">
+        </div>
+
+      </div>
+      <div class="three wide column">
+        <h4 class="ui inverted header">最新博客</h4>
+        <div class="ui inverted link list">
+          <a href="" class="item">用户故事</a>
+          <a href="" class="item">关于刻意练习的清单</a>
+          <a href="" class="item">失败要趁早</a>
+        </div>
+      </div>
+      <div class="three wide column">
+        <h4 class="ui inverted header">联系我</h4>
+        <div class="ui inverted link list">
+          <a href="" class="item">QQ:931031613</a>
+          <a href="" class="item">E-mail:931031613@163.com</a>
+        </div>
+      </div>
+      <div class="seven wide column">
+        <h4 class="ui inverted header">blog</h4>
+        <p class="m-text-thin m-text-spaced m-text-lined m-opacity-mini">这是由四人小组编写的小型个人博客系统</p>
+      </div>
+    </div>
+    <div class="ui inverted section divider"></div>
+    <p class="m-text-thin m-text-spaced m-text-lined m-opacity-mini">by zhk,xys,yrh,zzb</p>
+  </div>
+
+</footer>
+
+<th:block th:fragments="script">
+  <script src="https://l2dwidget.js.org//lib/L2Dwidget.min.js"></script>
+  <script type="text/javascript">
+    L2Dwidget
+            .on('*', (name) => {
+              console.log('%c EVENT ' + '%c -> ' + name, 'background: #222; color: yellow', 'background: #fff; color: #000')
+            })
+            .init({
+              dialog: {
+                enable: true,
+                script: {
+                  'every idle 5s': '$hitokoto$',
+                  'hover .star': '星星在天上而你在我心里 (*/ω＼*)',
+                  'tap body': '哎呀！别碰我！',
+                  'tap face': '人家已经不是小孩子了！'
+                }
+              },
+              "model": {
+                <!-- jsonpath控制显示那个小萝莉模型 -->
+                jsonPath: "https://unpkg.com/live2d-widget-model-z16@1.0.5/assets/z16.model.json",
+                "scale": 1
+              },
+              "display": {
+                "position": "right", //看板娘的表现位置
+                "width": 170, //小萝莉的宽度
+                "height": 300, //小萝莉的高度
+                "hOffset": 0,
+                "vOffset": -20
+              },
+              "mobile": {
+                "show": true,
+                "scale": 0.5
+              },
+              "react": {
+                "opacityDefault": 0.7,
+                "opacityOnHover": 0.2
+              }
+            });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+
+</th:block>
+</body>
+</html>

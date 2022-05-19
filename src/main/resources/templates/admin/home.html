@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
@@ -18,7 +18,6 @@
     <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-
             type="text/css"
     />
 
@@ -26,20 +25,14 @@
         body {
             -webkit-font-smoothing: antialiased;
             -moz-font-smoothing: grayscale;
-            background: url(../../static/img/adminBG.webp);
+            /*thymelea加载路径*/
+            background: url(/img/adminBG.webp);
         }
 
         #content h1 {
             font-size: 36px;
         }
 
-        .ui.borderless.menu {
-            box-shadow: none;
-            flex-wrap: wrap;
-            border: none;
-            padding-left: 0;
-            padding-right: 0;
-        }
     </style>
 </head>
 
@@ -60,11 +53,10 @@
     </div>
 </div>
 
+<script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="../../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
 <!--底部栏-->
 <div th:insert="admin/commens::button"></div>
-
-<script src="../../static/js/jquery.min.js"></script>
-<script src="../../static/js/semantic.min.js"></script>
 
 <!-- 看板娘 -->
 <div th:insert="admin/commens::kanban"></div>
