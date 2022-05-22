@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分类管理</title>
+    <link href="../static/css/me.css" rel="stylesheet" th:href="@{/css/me.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css">
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-font-smoothing: grayscale;
+            background: url(/img/adminBG.webp);
+        }
+    </style>
+</head>
+
+<body id="root">
+<!--顶部导航栏-->
+<div th:insert="admin/commens::top"></div>
+<br>
+<br>
+<br>
+<br>
+<div class="ui menu attached pointing">
+    <div class="ui container">
+        <div class="right menu">
+            <a href="#" th:href="@{/admin/types/input}" class="item">新增</a>
+            <a href="#" th:href="@{/admin/types}" class="item teal active">列表</a>
+        </div>
+
+    </div>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<!--中间内容-->
+<div class="m-container-small m-padded-tb-big ">
+    <div class="ui container">
+        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+            <i class="close icon"></i>
+            <div class="header">提示:
+                <p th:text="${message}">恭喜操作成功</p>
+            </div>
+        </div>
+        <table class="ui table celled">
+            <thead>
+            <tr>
+                <th></th>
+                <th>分类名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--            循环拿到数据列表-->
+            <tr th:each="type,iterStat : ${page.content}">
+                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${type.name}">可以联系清单</td>
+                <td>
+                    <a href="#" th:href="@{/admin/types/{id}/input(id=${type.id})}"
+                       class="ui mini teal button basic">编辑</a>
+                    <a href="#" th:href="@{/admin/types/{id}/delete(id=${type.id})}"
+                       class="ui mini red button basic">删除</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="6">
+                    <div class="ui pagination menu" th:if="${page.totalPages}>1">
+                        <a href="#" th:href="@{/admin/types(page=${page.number}-1)}"
+                           class="ui button item right floated teal basic" th:unless="${page.first}">上一页</a>
+                        <a href="#" th:href="@{/admin/types(page=${page.number}+1)}"
+                           class="ui button item right floated teal basic" th:unless="${page.last}">下一页</a>
+                    </div>
+                    <a href="#" th:href="@{/admin/types/input}" class="ui button item right floated teal basic">新增</a>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<br><br><br><br>
+
+
+<!--底部栏-->
+
+<script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="../../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
+<div th:insert="admin/commens::button"></div>
+<div th:insert="admin/commens::kanban"></div>
+
+<!--消息提示关闭-->
+<script>
+    $('.message .close')
+        .on('click', function () {
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
+
+</script>
+</body>
+</html>
