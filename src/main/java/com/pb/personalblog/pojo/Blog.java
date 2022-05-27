@@ -30,7 +30,7 @@ public class Blog {
     private Type type;
 
     @ManyToMany(cascade = {CascadeType.PERSIST})//生成新的blog的同时可以同时生成新tag
-    private List<Tags> tags = new ArrayList<>();
+    private List<Tag> tag = new ArrayList<>();
 
     @ManyToOne//多个blog对应一个user
     private User user;
@@ -154,12 +154,12 @@ public class Blog {
         this.type = type;
     }
 
-    public List<Tags> getTags() {
-        return tags;
+    public List<Tag> getTag() {
+        return tag;
     }
 
-    public void setTags(List<Tags> tags) {
-        this.tags = tags;
+    public void setTags(List<Tag> tags) {
+        this.tag = tag;
     }
 
     public User getUser() {

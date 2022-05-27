@@ -13,7 +13,7 @@
 <!--后台管理公共页面，顶部导航栏，底部栏，看板娘-->
 <script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
 <script src="../../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
-<nav th:fragment="top">
+<nav th:fragment="top(m)">
     <div class="ui tablet computer only padded grid">
         <div class="ui container">
             <div class="ui inverted borderless top fixed fluid pointing menu" id="menu">
@@ -21,12 +21,16 @@
                 <a href="#" th:href="@{/admin/home}" class="m-item item m-mobile-hide">
                     <h3 class="ui header item">博客后台管理</h3>
                 </a>
-                <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide"><i
+                <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide"
+                   th:classappend="${m==1} ?'active'"><i
                         class="home icon"></i>文章管理</a>
-                <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide"><i
+                <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide"
+                   th:classappend="${m==2} ?'active'"><i
                         class="tasks icon"></i>分类管理</a>
-                <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide"><i class="tag icon"></i>标签管理</a>
-                <a href="#" th:href="@{/admin/aboutme}" class="m-item item m-mobile-hide"><i
+                <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide"
+                   th:classappend="${m==3} ?'active'"><i class="tag icon"></i>标签管理</a>
+                <a href="#" th:href="@{/admin/aboutme}" class="m-item item m-mobile-hide"
+                   th:classappend="${m==4} ?'active'"><i
                         class="blind icon"></i>编辑关于我</a>
                 <div class="right m-item m-mobile-hide menu" style="margin-right: 2em">
                     <div class="ui dropdown  item">

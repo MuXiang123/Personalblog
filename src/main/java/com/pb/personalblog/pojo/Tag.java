@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "t_tags")
-public class Tags {
+@Table(name = "t_tag")
+public class Tag {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
 
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany(mappedBy = "tag")
     private List<Blog> blogs = new ArrayList<>();
 
 
-    public Tags() {
+    public Tag() {
     }
 
     public Long getId() {
@@ -45,7 +45,7 @@ public class Tags {
 
     @Override
     public String toString() {
-        return "Tags{" +
+        return "tag{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

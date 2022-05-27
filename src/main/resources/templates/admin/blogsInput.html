@@ -18,7 +18,7 @@
 <body>
 
 <!--导航-->
-<div th:insert="admin/commens::top"></div>
+<div th:insert="admin/commens::top(m)"></div>
 
 <br><br><br><br>
 <div class="m-padded-tb-hugex">
@@ -170,7 +170,7 @@
       width: "100%",
       height: 640,
       syncScrolling: "single",
-//        path    : "../static/lib/editormd/lib/"
+      // path    : "../static/lib/editormd/lib/"
       path: "/lib/editormd/lib/"
     });
   });
