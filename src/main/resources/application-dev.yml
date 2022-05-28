@@ -10,3 +10,15 @@ spring:
       ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5Dialect
+  redis:
+    host: 127.0.0.1 #服务器地址
+    port: 6379 #端口号
+    password: #密码默认为空
+    jedis:
+      pool:
+        max-idle: 8 #最大空闲连接数
+        max-wait: -1ms #不超时
+        max-active: 8 #最大连接数
+    timeout: 3000ms #连接超时时间
+    database: 0 #数据库索引
+
