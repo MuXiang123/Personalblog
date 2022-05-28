@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 后台管理功能controller
  */
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
     /**
      * 管理页面主页
      *
      * @return
      */
-    @RequestMapping("/admin/home")
+    @RequestMapping("/home")
     public String test1() {
         return "admin/home";
     }
@@ -26,7 +27,7 @@ public class AdminController {
      *
      * @return
      */
-    @RequestMapping("/admin/blogs")
+    @RequestMapping("/blogs")
     public String test2() {
         return "admin/blogs";
     }
@@ -36,7 +37,7 @@ public class AdminController {
      *
      * @return
      */
-    @RequestMapping("/admin/input")
+    @RequestMapping("/input")
     public String test3() {
         return "admin/blogsInput";
     }

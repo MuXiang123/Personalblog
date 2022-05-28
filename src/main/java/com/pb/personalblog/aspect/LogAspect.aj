@@ -10,17 +10,29 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
-//打印日志信息到控制台
-
-@Aspect//切面操作
+/**
+ * @author zhk
+ * @date 2022/5/27 17:20
+ * 日志切面，打印日志到控制台
+ */
+//开启切面和注解扫描
+@Aspect
 @Component
 public class LogAspect {
+    //    输出日志
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    /**
+     *拦截所有访问
+     */
     @Pointcut("execution(* com.pb.personalblog.controller.*.*(..))")
     public void log() {//定义切面
     }
 
+    /**
+     * 在切面之前执行，
+     * @param joinPoint 连接点
+     */
     @Before("log()")
     public void doBefore(JoinPoint joinPoint) {
         logger.info("----------------doBefore---------------");
@@ -37,11 +49,18 @@ public class LogAspect {
 
     }
 
+    /**
+     * 切面后执行
+     */
     @After("log()")
     public void doAfter() {
         logger.info("----------------doAfter---------------");
     }
 
+    /**
+     * 拦截返回后的内容并输出
+     * @param result
+     */
     @AfterReturning(returning = "result", pointcut = "log()")
     public void doAfterRuturn(Object result) {
         logger.info("Result : {}", result);

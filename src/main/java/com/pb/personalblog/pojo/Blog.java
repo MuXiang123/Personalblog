@@ -12,6 +12,7 @@ public class Blog {
     @GeneratedValue//自动生成
     private Long id;           //id
     private String title;        //文章标题
+    @Lob
     private String content;     //内容
     private String firstPicture;  //首图
     private String flag;  //标记
@@ -20,7 +21,7 @@ public class Blog {
     private boolean shareStatement;//版权块是否开启
     private boolean commentabled;//评论区是否开启
     private boolean published;//发布还是保存草稿
-    private boolean recommened;//是否推荐
+    private boolean recommend;//是否推荐
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;//创建时间
     @Temporal(TemporalType.TIMESTAMP)
@@ -37,6 +38,9 @@ public class Blog {
 
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments = new ArrayList<>();
+
+    @Transient
+    private String tagIds;
 
 
     public Blog() {
@@ -122,12 +126,12 @@ public class Blog {
         this.published = published;
     }
 
-    public boolean isRecommened() {
-        return recommened;
+    public boolean isRecommend() {
+        return recommend;
     }
 
-    public void setRecommened(boolean recommened) {
-        this.recommened = recommened;
+    public void setRecommend(boolean recommened) {
+        this.recommend = recommened;
     }
 
     public Date getCreateTime() {
@@ -154,7 +158,7 @@ public class Blog {
         this.type = type;
     }
 
-    public List<Tag> getTag() {
+    public List<Tag> getTags() {
         return tag;
     }
 
@@ -170,6 +174,13 @@ public class Blog {
         this.user = user;
     }
 
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
+    }
 
     @Override
     public String toString() {
@@ -184,7 +195,7 @@ public class Blog {
                 ", shareStatement=" + shareStatement +
                 ", commentabled=" + commentabled +
                 ", published=" + published +
-                ", recommened=" + recommened +
+                ", recommend=" + recommend +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';

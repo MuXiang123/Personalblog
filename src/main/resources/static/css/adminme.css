@@ -1,7 +1,9 @@
-body {
-    background: url("../img/bg.png");
-}
 
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: grayscale;
+    background: url(../img/adminBG.webp);
+}
 
 .m-padded-mini {
     padding: 0.2em !important;
@@ -167,5 +169,10 @@ body {
     .m-mobile-wide {
         width: 100% !important;
     }
+}
+
+
+.m-black {
+    color: #333 !important;
 }
 

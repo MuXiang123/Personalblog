@@ -4,9 +4,11 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
 @Table(name = "t_tag")
 public class Tag {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -14,7 +16,6 @@ public class Tag {
 
     @ManyToMany(mappedBy = "tag")
     private List<Blog> blogs = new ArrayList<>();
-
 
     public Tag() {
     }
@@ -45,7 +46,7 @@ public class Tag {
 
     @Override
     public String toString() {
-        return "tag{" +
+        return "Tag{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
