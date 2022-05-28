@@ -1,13 +1,12 @@
 package com.pb.personalblog;
 
+
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PersonalblogApplicationTests {
-
+public class PersonalblogApplicationTests {
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
-
 }
