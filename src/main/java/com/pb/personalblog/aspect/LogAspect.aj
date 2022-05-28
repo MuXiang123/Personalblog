@@ -19,11 +19,14 @@ import javax.servlet.http.HttpServletRequest;
 @Aspect
 @Component
 public class LogAspect {
-    //    输出日志
+    /**输出日志
+     *
+     */
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
-     *拦截所有访问
+     * 切面
+     * 拦截所有访问
      */
     @Pointcut("execution(* com.pb.personalblog.controller.*.*(..))")
     public void log() {//定义切面
@@ -41,9 +44,11 @@ public class LogAspect {
 
         String url = request.getRequestURL().toString();
         String ip = request.getRemoteAddr();
-        String classMethod = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();//类名+方法名
-        Object[] args = joinPoint.getArgs();//参数
-
+        //类名+方法名
+        String classMethod = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
+        //参数
+        Object[] args = joinPoint.getArgs();
+        //封装请求日志并且打印
         RequestLog requestLog = new RequestLog(url, ip, classMethod, args);
         logger.info("Request:{}", requestLog);
 
