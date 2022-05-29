@@ -2,6 +2,7 @@ package com.pb.personalblog.controller;
 
 
 import com.pb.personalblog.pojo.Tag;
+import com.pb.personalblog.pojo.satistics;
 import com.pb.personalblog.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -30,18 +31,21 @@ public class TagController {
     public String tags(@PageableDefault(size = 5, sort = {"id"}, direction = Sort.Direction.DESC)
                                Pageable pageable, Model model) {
         model.addAttribute("page", tagService.listTag(pageable));
+        model.addAttribute("btn", new satistics());
         return "admin/tags";
     }
 
     @GetMapping("/tags/input")
     public String input(Model model) {
         model.addAttribute("tag", new Tag());
+        model.addAttribute("btn", new satistics());
         return "admin/tags-input";
     }
 
     @GetMapping("/tags/{id}/input")
     public String editInput(@PathVariable Long id, Model model) {
         model.addAttribute("tag", tagService.getTag(id));
+        model.addAttribute("btn", new satistics());
         return "admin/tags-input";
     }
 
