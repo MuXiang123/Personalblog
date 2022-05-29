@@ -1,6 +1,9 @@
 package com.pb.personalblog.controller;
 
+import com.pb.personalblog.pojo.satistics;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -17,8 +20,10 @@ public class AdminController {
      *
      * @return
      */
-    @RequestMapping("/home")
-    public String test1() {
+    @GetMapping("/home")
+    public String test1(Model model) {
+        satistics s = new satistics();
+        model.addAttribute("btn", s);
         return "admin/home";
     }
 
@@ -41,4 +46,6 @@ public class AdminController {
     public String test3() {
         return "admin/blogsInput";
     }
+
+
 }
