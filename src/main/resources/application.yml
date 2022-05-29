@@ -1,11 +1,16 @@
 spring:
   profiles:
     active: dev
-#  messages:
-#    basename: i18n/messages
-#  thymeleaf:
+  #  messages:
+  #    basename: i18n/messages
+  thymeleaf:
+    cache: false
+  mvc:
+    favicon:
+      enabled: false
 #    prefix: classpath:/templates
 #    suffix: .html
 #    mode: HTML
-#    cache: false
 
+Comment:
+  avatar: /img/xys.jpg

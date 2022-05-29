@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-//分类方法实现
+/**
+ * 分类方法实现
+ */
 @Service
 public class TypeServiceimpl implements TypeService {
     @Autowired

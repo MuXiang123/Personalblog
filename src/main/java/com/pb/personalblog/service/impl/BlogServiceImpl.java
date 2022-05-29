@@ -5,6 +5,7 @@ import com.pb.personalblog.pojo.Blog;
 import com.pb.personalblog.pojo.Type;
 import com.pb.personalblog.repository.BlogRepository;
 import com.pb.personalblog.service.BlogService;
+import com.pb.personalblog.util.MarkdownUtils;
 import com.pb.personalblog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,26 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog getBlog(Long id) {
-        return blogRepository.findById(id).get();
+        return blogRepository.getOne(id);
     }
+
+    //编辑器转换为html
+    @Transactional
+    @Override
+    public Blog getAndConvert(Long id) {
+        Blog blog = blogRepository.getOne(id);
+        if (blog == null) {
+            throw new NotFoundException("该博客不存在");
+        }
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog, b);
+        String content = b.getContent();
+        b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+
+        blogRepository.updateViews(id);
+        return b;
+    }
+
 
     @Override
     public Page<Blog> listBlog(Pageable pageable, BlogQuery blog) {
@@ -41,7 +60,7 @@ public class BlogServiceImpl implements BlogService {
                 //查询条件动态组合(1.blog对象映射为root，2.查询条件容器，3.具体查询语句)
                 List<Predicate> predicates = new ArrayList<>();
                 //添加3个条件查询博客，分别为标题，分类和是否推荐
-                if ("".equals(blog.getTitle()) && blog.getTitle() != null) {
+                if (!"".equals(blog.getTitle()) && blog.getTitle() != null) {
                     predicates.add(cb.like(root.<String>get("title"), "%" + blog.getTitle() + "%"));
                 }
                 if (blog.getTypeId() != null) {
@@ -56,17 +75,19 @@ public class BlogServiceImpl implements BlogService {
             }
         }, pageable);
     }
-
     @Transactional
     @Override
     public Blog saveBlog(Blog blog) {
-        //初始化一些数据
-        blog.setCreateTime(new Date());
-        blog.setUpdateTime(new Date());
-        blog.setViews(0);
+        if (blog.getId() == null) {
+            //初始化一些数据
+            blog.setCreateTime(new Date());
+            blog.setUpdateTime(new Date());
+            blog.setViews(0);
+        } else {
+            blog.setUpdateTime(new Date());
+        }
         return blogRepository.save(blog);
     }
-
     @Transactional
     @Override
     public Blog updateBlog(Long id, Blog blog) {
@@ -77,11 +98,9 @@ public class BlogServiceImpl implements BlogService {
         BeanUtils.copyProperties(b, blog);
         return blogRepository.save(b);
     }
-
     @Transactional
     @Override
     public void deleteBlog(Long id) {
         blogRepository.deleteById(id);
-
     }
 }
