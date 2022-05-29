@@ -1,10 +1,16 @@
 package com.pb.personalblog.pojo;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Component
+@ConfigurationProperties(prefix = "avatar")
 @Entity
 @Table(name = "t_comment")
 public class Comment {
@@ -26,6 +32,8 @@ public class Comment {
 
     @ManyToOne
     private Comment parentComment;
+
+    private boolean adminComment;
 
     public Comment() {
     }
@@ -100,6 +108,14 @@ public class Comment {
 
     public void setParentComment(Comment parentComment) {
         this.parentComment = parentComment;
+    }
+
+    public boolean isAdminComment() {
+        return adminComment;
+    }
+
+    public void setAdminComment(boolean adminComment) {
+        this.adminComment = adminComment;
     }
 
     @Override
