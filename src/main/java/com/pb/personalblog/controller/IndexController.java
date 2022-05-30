@@ -27,7 +27,7 @@ public class IndexController {
 
 
     @GetMapping("/")
-    public String index(@PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+    public String index(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                         Model model) {
         model.addAttribute("page", blogService.listBlog(pageable));
         model.addAttribute("types", typeService.listTypeTop(6));
@@ -36,12 +36,13 @@ public class IndexController {
         return "foreground/index";
     }
 
-
+    //全局搜索
     @PostMapping("/search")
-    public String search(@PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+    public String search(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                          @RequestParam String query, Model model) {
-
-        return "search";
+        model.addAttribute("page", blogService.findByQuery("%" + query + "%", pageable));
+        model.addAttribute("query", query);
+        return "foreground/search";
     }
 
 //    @GetMapping("/blog/{id}")

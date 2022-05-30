@@ -20,6 +20,8 @@ public interface BlogService {
 
     Page<Blog> listBlog(Pageable pageable, BlogQuery blog);
 
+    Page<Blog> findByQuery(String query, Pageable pageable);
+
     //推荐博客
     List<Blog> listRecommendBlogTop(Integer size);
 

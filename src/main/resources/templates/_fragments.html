@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head(title)">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--移动门端缩放页面-->
@@ -21,11 +21,14 @@
       <a href="" class="item" th:classappend="${n==3} ?'active'"><i class="tags icon"></i>标签</a>
       <a href="" class="item" th:classappend="${n==4} ?'active'"><i class="clone icon"></i>归档</a>
       <a href="" class="item" th:classappend="${n==5} ?'active'"><i class="info icon"></i>关于我</a>
-      <div class="right item">
-        <div class="ui item input transparent inverted">
-          <input type="text" placeholder="Search..">
-          <i class="search icon link"></i>
-        </div>
+      <div class="right item m-item m-mobile-hide">
+        <form name="search" action="#" th:action="@{/search}" target="_blank" method="post">
+          <div class="ui icon m-margin-tb-tiny item input transparent inverted">
+            <input type="text" name="query" placeholder="Search.." th:value="${query}">
+            <i class="search icon link" onclick="document.forms['search'].submit()"></i>
+          </div>
+        </form>
+
       </div>
     </div>
   </div>
