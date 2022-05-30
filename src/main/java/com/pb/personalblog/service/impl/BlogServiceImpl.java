@@ -6,11 +6,14 @@ import com.pb.personalblog.pojo.Type;
 import com.pb.personalblog.repository.BlogRepository;
 import com.pb.personalblog.service.BlogService;
 import com.pb.personalblog.util.MarkdownUtils;
+import com.pb.personalblog.util.MyBeanUtils;
 import com.pb.personalblog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -75,6 +78,14 @@ public class BlogServiceImpl implements BlogService {
             }
         }, pageable);
     }
+
+    @Override
+    public List<Blog> listRecommendBlogTop(Integer size) {
+        Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
+        Pageable pageable = new PageRequest(0, size, sort);
+        return blogRepository.findTop(pageable);
+    }
+
     @Transactional
     @Override
     public Blog saveBlog(Blog blog) {
@@ -88,6 +99,7 @@ public class BlogServiceImpl implements BlogService {
         }
         return blogRepository.save(blog);
     }
+
     @Transactional
     @Override
     public Blog updateBlog(Long id, Blog blog) {
@@ -95,12 +107,19 @@ public class BlogServiceImpl implements BlogService {
         if (b == null) {
             throw new NotFoundException("博客不存在");
         }
-        BeanUtils.copyProperties(b, blog);
+        BeanUtils.copyProperties(blog, b, MyBeanUtils.getNullPropertyNames(blog));
+        b.setUpdateTime(new Date());
         return blogRepository.save(b);
     }
+
     @Transactional
     @Override
     public void deleteBlog(Long id) {
         blogRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Blog> listBlog(Pageable pageable) {
+        return blogRepository.findAll(pageable);
     }
 }

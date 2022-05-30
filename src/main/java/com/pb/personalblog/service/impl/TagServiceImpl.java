@@ -1,5 +1,6 @@
 package com.pb.personalblog.service.impl;
 
+
 import com.pb.personalblog.exception.NotFoundException;
 import com.pb.personalblog.pojo.Tag;
 import com.pb.personalblog.repository.TagRepository;
@@ -7,12 +8,15 @@ import com.pb.personalblog.service.TagService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Service
 public class TagServiceImpl implements TagService {
@@ -49,11 +53,17 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public List<Tag> listTag(String ids) {//ids为1，2，3转化为集合查询到标签
-
+    public List<Tag> listTag(String ids) {
+        //ids为1，2，3转化为集合查询到标签
         return tagRepository.findAllById(converToList(ids));
     }
 
+    /**
+     * 将传入的id字符串转为long数组
+     *
+     * @param ids
+     * @return
+     */
     public List<Long> converToList(String ids) {
         List<Long> list = new ArrayList<>();
         if (!"".equals(ids) && ids != null) {
@@ -61,7 +71,6 @@ public class TagServiceImpl implements TagService {
             for (int i = 0; i < idarray.length; i++) {
                 list.add(new Long(idarray[i]));
             }
-
         }
         return list;
     }
@@ -77,9 +86,17 @@ public class TagServiceImpl implements TagService {
         return tagRepository.save(t);
     }
 
+
     @Transactional
     @Override
     public void deleteTag(Long id) {
         tagRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Tag> listTagTop(Integer size) {
+        Sort sort = new Sort(Sort.Direction.DESC, "blogs.size");
+        Pageable pageable = new PageRequest(0, size, sort);
+        return tagRepository.findTop(pageable);
     }
 }

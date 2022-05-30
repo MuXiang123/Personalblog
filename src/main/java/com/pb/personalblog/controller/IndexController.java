@@ -10,10 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -28,11 +25,15 @@ public class IndexController {
     @Autowired
     private TagService tagService;
 
+
     @GetMapping("/")
     public String index(@PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                         Model model) {
-
-        return "index";
+        model.addAttribute("page", blogService.listBlog(pageable));
+        model.addAttribute("types", typeService.listTypeTop(6));
+        model.addAttribute("tags", tagService.listTagTop(6));
+        model.addAttribute("recommendBlogs", blogService.listRecommendBlogTop(8));
+        return "foreground/index";
     }
 
 
@@ -43,12 +44,12 @@ public class IndexController {
         return "search";
     }
 
-    @GetMapping("/blog/{id}")
-    //    通过 @PathVariable 可以将URL中占位符参数{xxx}绑定到处理器类的方法形参中@PathVariable(“xxx“)
-    public String blog(@PathVariable Long id, Model model) {
-        model.addAttribute("blog", blogService.getAndConvert(id));
-        return "blog";
-    }
+//    @GetMapping("/blog/{id}")
+//    //    通过 @PathVariable 可以将URL中占位符参数{xxx}绑定到处理器类的方法形参中@PathVariable(“xxx“)
+//    public String blog(@PathVariable Long id, Model model) {
+//        model.addAttribute("blog", blogService.getAndConvert(id));
+//        return "blog";
+//    }
 
     @GetMapping("/footer/newblog")
     public String newblogs(Model model) {
