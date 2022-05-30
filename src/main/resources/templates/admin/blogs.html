@@ -11,7 +11,7 @@
 <body>
 
 <!--导航栏-->
-<div th:insert="admin/commens::top(1)"></div>
+<div th:insert="admin/common::top(1)"></div>
 <br><br><br><br>
 <div class="ui attached pointing menu m-padded-tb-hugex">
     <div class="ui attached pointing menu">
@@ -119,8 +119,8 @@
 
 <script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
 <script src="../../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
-<div th:insert="admin/commens::button(${btn})"></div>
-<div th:insert="admin/commens::kanban"></div>
+<div th:insert="admin/common::button(${btn})"></div>
+<div th:insert="admin/common::kanban"></div>
 <script>
     function page(obj) {
         $("[name='page']").val($(obj).data("page"));

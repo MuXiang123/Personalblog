@@ -2,7 +2,7 @@ package com.pb.personalblog.controller;
 
 
 import com.pb.personalblog.pojo.Tag;
-import com.pb.personalblog.pojo.satistics;
+import com.pb.personalblog.vo.satistics;
 import com.pb.personalblog.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

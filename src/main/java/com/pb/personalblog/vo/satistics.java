@@ -1,8 +1,9 @@
-package com.pb.personalblog.pojo;
+package com.pb.personalblog.vo;
 
 /**
  * @author zhk
  * @date 2022/5/29 16:19
+ * 公共页面底部统计数据实体类
  */
 public class satistics {
     int article = 1;

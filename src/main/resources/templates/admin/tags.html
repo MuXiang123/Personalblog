@@ -11,7 +11,7 @@
 <body>
 
 <!--导航-->
-<div th:insert="admin/commens::top(3)"></div>
+<div th:insert="admin/common::top(3)"></div>
 <br>
 <br>
 <br>
@@ -77,8 +77,8 @@
 <!-- 底部footer -->
 <script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
 <script src="../../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
-<div th:insert="admin/commens::button(${btn})"></div>
-<div th:insert="admin/commens::kanban"></div>
+<div th:insert="admin/common::button(${btn})"></div>
+<div th:insert="admin/common::kanban"></div>
 <script>
     $('.menu.toggle').click(function () {
         $('.m-item').toggleClass('m-mobile-hide');

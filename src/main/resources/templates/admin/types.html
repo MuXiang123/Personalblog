@@ -11,7 +11,7 @@
 
 <body id="root">
 <!--顶部导航栏-->
-<div th:insert="admin/commens::top(2)"></div>
+<div th:insert="admin/common::top(2)"></div>
 <br>
 <br>
 <br>
@@ -83,8 +83,8 @@
 
 <script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
 <script src="../../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
-<div th:insert="admin/commens::button(${btn})"></div>
-<div th:insert="admin/commens::kanban"></div>
+<div th:insert="admin/common::button(${btn})"></div>
+<div th:insert="admin/common::kanban"></div>
 
 <!--消息提示关闭-->
 <script>

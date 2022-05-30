@@ -12,11 +12,12 @@
     <link href="../../static/lib/editormd/css/editormd.css" rel="stylesheet"
           th:href="@{/lib/editormd/css/editormd.min.css}">
     <link rel="stylesheet" th:href="@{/css/adminme.css}">
+    <link rel="icon" th:href="@{/img/favicon.ico}" type="image/x-icon"/>
 </head>
 <body>
 
 <!--导航-->
-<div th:insert="admin/commens::top(1)"></div>
+<div th:insert="admin/common::top(1)"></div>
 
 <br><br><br><br>
 <div class="m-padded-tb-hugex">
@@ -33,14 +34,14 @@
 <!--中间内容-->
 <div class="">
     <div class="ui container">
-        <form action="#" class="ui form" id="blog-form" method="post" th:action="@{/admin/blogs}">
+        <form action="#" class="ui form" id="blog-form" th:object="${blog}" method="post" th:action="@{/admin/blogs}">
             <input name="published" type="hidden">
-            <input name="id" type="hidden">
+            <input name="id" type="hidden" th:value="*{id}">
 
             <div class="required field">
                 <div class="ui left labeled input">
                     <div class="ui selection compact teal basic dropdown label">
-                        <input name="flag" type="hidden" value="原创">
+                        <input name="flag" type="hidden" value="原创" th:value="*{flag}">
                         <i class="dropdown icon"></i>
                         <div class="text">原创</div>
                         <div class="menu">
@@ -49,13 +50,13 @@
                             <div class="item" data-value="翻译">翻译</div>
                         </div>
                     </div>
-                    <input name="title" placeholder="标题" type="text">
+                    <input name="title" placeholder="标题" type="text" th:value="*{title}">
                 </div>
             </div>
 
             <div class="required field">
                 <div class="" id="md-content" style="z-index: 1 !important;">
-                    <textarea name="content" placeholder="博客内容" style="display: none"></textarea>
+                    <textarea name="content" placeholder="博客内容" style="display: none" th:text="*{content}"></textarea>
                 </div>
             </div>
 
@@ -93,11 +94,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="required field">
-                    <div class="ui left labeled input">
-                        <label class="ui teal basic label">首图</label>
-                        <input name="firstPicture" placeholder="首图引用地址" type="text">
-                    </div>
+            </div>
+            <div class="required field">
+                <div class="ui left labeled input">
+                    <label class="ui teal basic label">首图</label>
+                    <input name="firstPicture" placeholder="首图引用地址" type="text" th:value="*{firstPicture}">
                 </div>
             </div>
 
@@ -108,25 +109,29 @@
             <div class="inline fields">
                 <div class="field">
                     <div class="ui checkbox">
-                        <input checked class="hidden" id="recommend" name="recommend" type="checkbox">
+                        <input checked class="hidden" id="recommend" name="recommend" type="checkbox"
+                               th:checked="*{recommend}">
                         <label for="recommend">推荐</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui checkbox">
-                        <input class="hidden" id="shareStatement" name="shareStatement" type="checkbox">
+                        <input class="hidden" id="shareStatement" name="shareStatement" type="checkbox"
+                               th:checked="*{shareStatement}">
                         <label for="shareStatement">转载声明</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui checkbox">
-                        <input class="hidden" id="appreciation" name="appreciation" type="checkbox">
+                        <input class="hidden" id="appreciation" name="appreciation" type="checkbox"
+                               th:checked="*{appreciation}">
                         <label for="appreciation">赞赏</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui checkbox">
-                        <input class="hidden" id="commentabled" name="commentabled" type="checkbox">
+                        <input class="hidden" id="commentabled" name="commentabled" type="checkbox"
+                               th:checked="*{commentabled}">
                         <label for="commentabled">评论</label>
                     </div>
                 </div>
@@ -143,20 +148,15 @@
         </form>
     </div>
 </div>
-
-
 <br>
 <br>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 <script src="../../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
 <!--底部栏-->
-<div th:insert="admin/commens::button"></div>
-
+<div th:insert="admin/common::button(${btn})"></div>
 <!-- 看板娘 -->
-<div th:insert="admin/commens::kanban"></div>
-
+<div th:insert="admin/common::kanban"></div>
 <script src="../../static/lib/editormd/editormd.js" th:src="@{/lib/editormd/editormd.js}"></script>
-
 <script>
     //初始化Markdown编辑器
     var contentEditor;

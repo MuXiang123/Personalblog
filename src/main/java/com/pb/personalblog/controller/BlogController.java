@@ -1,9 +1,8 @@
 package com.pb.personalblog.controller;
 
 import com.pb.personalblog.pojo.Blog;
-import com.pb.personalblog.pojo.Tag;
 import com.pb.personalblog.pojo.User;
-import com.pb.personalblog.pojo.satistics;
+import com.pb.personalblog.vo.satistics;
 import com.pb.personalblog.service.BlogService;
 import com.pb.personalblog.service.TagService;
 import com.pb.personalblog.service.TypeService;

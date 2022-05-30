@@ -1,6 +1,6 @@
 package com.pb.personalblog.controller;
 
-import com.pb.personalblog.pojo.satistics;
+import com.pb.personalblog.vo.satistics;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
