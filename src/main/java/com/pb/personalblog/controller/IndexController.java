@@ -54,8 +54,11 @@ public class IndexController {
 
     @GetMapping("/footer/newblog")
     public String newblogs(Model model) {
-
         return "_fragments :: newblogList";
     }
 
+    @GetMapping("/about")
+    public String about() {
+        return "foreground/about";
+    }
 }
