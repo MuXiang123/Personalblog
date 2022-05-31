@@ -23,9 +23,10 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> listCommentByBlogId(Long blogId) {
-        Sort sort = new Sort("createTime");
-        List<Comment> comments = commentRepository.findByBlogIdAndParentCommentNull(blogId, sort);
-        return eachComment(comments);
+        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
+//        List<Comment> comments = commentRepository.findByBlogIdAndParentCommentNull(blogId, sort);
+//        return eachComment(comments);
+        return commentRepository.findByBlogId(blogId, sort);
     }
 
     @Transactional
@@ -34,7 +35,7 @@ public class CommentServiceImpl implements CommentService {
         Long parentCommentId = comment.getParentComment().getId();
 //        有值即根据父级，保存到评论
         if (parentCommentId != -1) {
-            comment.setParentComment(commentRepository.getOne(parentCommentId));
+            comment.setParentComment(commentRepository.findById(parentCommentId).get());
         } else {
             comment.setParentComment(null);
         }

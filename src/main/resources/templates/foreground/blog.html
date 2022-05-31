@@ -399,7 +399,7 @@ h5,h6{font-size:1em;}
                 <div th:fragment="commentList">
                     <div class="ui threaded comments" style="max-width: 100%">
                         <h3 class="ui dividing header">评论</h3>
-                        <div class="comment" th:each="comment : ${comments}">
+                        <div class="comment" th:each="comment : ${blog.comments}">
                             <a class="avatar">
                                 <img src="https://unsplash.it/800/450?image=1005" th:src="@{${comment.avatar}}">
                             </a>
@@ -419,7 +419,7 @@ h5,h6{font-size:1em;}
                                 </div>
                                 <div class="actions">
                                     <a class="reply" data-commentid="1" data-commentnickname="Matt"
-                                       th:attr="data-commentid=${comment.id},data-commentnickname=${comment.nickname}"
+                                       th:attr=" data-commentid=${comment.id},data-commentnickname=${comment.nickname}"
                                        onclick="reply(this)">回复</a>
                                 </div>
                             </div>

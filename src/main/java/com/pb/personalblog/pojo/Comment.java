@@ -1,6 +1,7 @@
 package com.pb.personalblog.pojo;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-@ConfigurationProperties(prefix = "avatar")
+@ConfigurationProperties(prefix = "comment")
 @Entity
 @Table(name = "t_comment")
 public class Comment {
@@ -19,6 +20,7 @@ public class Comment {
     private String nickname;//评论名
     private String email;
     private String content;//评论内容
+    @NestedConfigurationProperty
     private String avatar;//头像
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;

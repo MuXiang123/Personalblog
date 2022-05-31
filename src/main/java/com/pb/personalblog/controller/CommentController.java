@@ -47,14 +47,14 @@ public class CommentController {
 
         User user = (User) session.getAttribute("user");
         if (user != null) {
-//            简单处理头像
+    //    简单处理头像
             comment.setAvatar(user.getAvatar());
             comment.setAdminComment(true);
         } else {
             comment.setAvatar(avatar);
         }
         commentService.saveComment(comment);
-        return "redirect:/comments/" + blogId;
+        return "redirect:foreground/comments/" + blogId;
     }
 
 

@@ -13,5 +13,5 @@ spring:
     mode: HTML5
 
 
-Comment:
-  avatar: /img/xys.jpg
+
+comment.avatar: /img/xys.jpg
