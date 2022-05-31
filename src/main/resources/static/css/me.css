@@ -122,6 +122,9 @@ body {
     margin-bottom: 0.3em !important;
 }
 
+.m-margin-bottom-small {
+    margin-bottom: 0.5em !important;
+}
 /* -----shadow------ */
 .m-shadow-small {
     -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
@@ -133,11 +136,30 @@ body {
     color: #333 !important;
 }
 
+.m-teal {
+    color: #00B5AD !important;
+}
+
 /* ---------position---------- */
 .m-right-top {
     position: absolute;
     top: 0;
     right: 0;
+}
+
+.m-fixed {
+    position: fixed !important;
+    z-index: 10 !important;
+}
+
+.m-right-bottom {
+    left: 0 !important;
+    bottom: 0 !important;
+}
+
+.m-right-bottom-up {
+    left: 0 !important;
+    bottom: 10% !important;
 }
 
 /* ----mobile----- */
