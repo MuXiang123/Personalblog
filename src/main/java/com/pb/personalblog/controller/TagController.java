@@ -2,8 +2,9 @@ package com.pb.personalblog.controller;
 
 
 import com.pb.personalblog.pojo.Tag;
-import com.pb.personalblog.vo.satistics;
+import com.pb.personalblog.service.CommonService;
 import com.pb.personalblog.service.TagService;
+import com.pb.personalblog.vo.Satistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -26,26 +27,28 @@ public class TagController {
 
     @Autowired
     private TagService tagService;
+    @Autowired
+    private CommonService commonService;
 
     @GetMapping("/tags")
     public String tags(@PageableDefault(size = 5, sort = {"id"}, direction = Sort.Direction.DESC)
                                Pageable pageable, Model model) {
         model.addAttribute("page", tagService.listTag(pageable));
-        model.addAttribute("btn", new satistics());
+        model.addAttribute("btn", new Satistics(commonService.getArticle(), commonService.getVisit(), commonService.getComment()));
         return "admin/tags";
     }
 
     @GetMapping("/tags/input")
     public String input(Model model) {
         model.addAttribute("tag", new Tag());
-        model.addAttribute("btn", new satistics());
+        model.addAttribute("btn", new Satistics());
         return "admin/tags-input";
     }
 
     @GetMapping("/tags/{id}/input")
     public String editInput(@PathVariable Long id, Model model) {
         model.addAttribute("tag", tagService.getTag(id));
-        model.addAttribute("btn", new satistics());
+        model.addAttribute("btn", new Satistics(commonService.getArticle(), commonService.getVisit(), commonService.getComment()));
         return "admin/tags-input";
     }
 
@@ -93,6 +96,5 @@ public class TagController {
         attributes.addFlashAttribute("message", "删除成功");
         return "redirect:/admin/tags";
     }
-
 
 }

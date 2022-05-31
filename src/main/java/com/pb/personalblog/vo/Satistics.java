@@ -5,18 +5,18 @@ package com.pb.personalblog.vo;
  * @date 2022/5/29 16:19
  * 公共页面底部统计数据实体类
  */
-public class satistics {
-    int article = 1;
-    int visit = 2;
-    int comment = 3;
+public class Satistics {
+    int article;
+    int visit;
+    int comment;
 
-    public satistics(int article, int visit, int comment) {
+    public Satistics() {
+    }
+
+    public Satistics(int article, int visit, int comment) {
         this.article = article;
         this.visit = visit;
         this.comment = comment;
-    }
-
-    public satistics() {
     }
 
     public int getArticle() {
@@ -43,7 +43,6 @@ public class satistics {
         this.comment = comment;
     }
 
-
     @Override
     public String toString() {
         return "satistics{" +
@@ -52,5 +51,4 @@ public class satistics {
                 ", comment=" + comment +
                 '}';
     }
-
 }

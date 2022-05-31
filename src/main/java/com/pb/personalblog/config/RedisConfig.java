@@ -69,7 +69,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         // 定制缓存数据序列化方式及时效
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 // 设置缓存有效期为1天
-                .entryTtl(Duration.ofDays(7))
+                .entryTtl(Duration.ofDays(1))
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(strSerializer))
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jacksonSeial))
                 // 对空数据不进行缓存

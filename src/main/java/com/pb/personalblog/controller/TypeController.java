@@ -1,8 +1,9 @@
 package com.pb.personalblog.controller;
 
 import com.pb.personalblog.pojo.Type;
-import com.pb.personalblog.vo.satistics;
+import com.pb.personalblog.service.CommonService;
 import com.pb.personalblog.service.TypeService;
+import com.pb.personalblog.vo.Satistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,27 +25,30 @@ public class TypeController {
     @Autowired
     private TypeService typeService;
 
+    @Autowired
+    private CommonService commonService;
+
     @GetMapping("/types")
     public Object types(@PageableDefault(size = 5, sort = {"id"}, direction = Sort.Direction.DESC)
                                 Pageable pageable, Model model) {//分页处理，设定根据id倒序排列
         model.addAttribute("page", typeService.listType(pageable));
-        model.addAttribute("btn", new satistics());
+        model.addAttribute("btn", new Satistics(commonService.getArticle(), commonService.getVisit(), commonService.getComment()));
         return "admin/types";
-//查询到的page会有数据列表，是否末页，总页数，总条数，一页几条，当前第几页，是否第一页，排序方式，当前页的数据占总页几条
+        //查询到的page会有数据列表，是否末页，总页数，总条数，一页几条，当前第几页，是否第一页，排序方式，当前页的数据占总页几条
 
     }
 
     @GetMapping("/types/input")
     public String input(Model model) {
         model.addAttribute("type", new Type());
-        model.addAttribute("btn", new satistics());
+        model.addAttribute("btn", new Satistics(commonService.getArticle(), commonService.getVisit(), commonService.getComment()));
         return "admin/types-input";
     }
 
     @GetMapping("/types/{id}/input")
     public String editInput(@PathVariable Long id, Model model) {
         model.addAttribute("type", typeService.getType(id));
-        model.addAttribute("btn", new satistics());
+        model.addAttribute("btn", new Satistics(commonService.getArticle(), commonService.getVisit(), commonService.getComment()));
         return "admin/types-input";
     }
 
@@ -87,7 +91,7 @@ public class TypeController {
                            Model model) {
         //寻找同名分类
         Type type1 = typeService.getTypeByName(type.getName());
-        model.addAttribute("btn", new satistics());
+        model.addAttribute("btn", new Satistics(commonService.getArticle(), commonService.getVisit(), commonService.getComment()));
         if (type1 != null) {
             result.rejectValue("name", "nameError", "该分类已存在");
         }

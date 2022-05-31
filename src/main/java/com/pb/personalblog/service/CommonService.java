@@ -28,11 +28,4 @@ public interface CommonService {
      * @return
      */
     int getComment();
-
-    /**
-     * 获取
-     *
-     * @return
-     */
-    int getWord();
 }

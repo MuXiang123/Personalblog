@@ -38,10 +38,6 @@ public class UserServiceImpl implements UserService {
         Object o = redisTemplate.opsForValue().get("user_" + username);
         if (o != null) {
             user = (User) o;
-//            String md5Pass = MD5Utils.code(password);
-////            if (!username.equals(user.getUsername()) || !user.getPassword().equals(md5Pass)) {
-////                return null;
-////            }
             System.out.println(user.toString());
         } else {
             user = userRepository.findByUsernameAndPassword(username, MD5Utils.code(password));

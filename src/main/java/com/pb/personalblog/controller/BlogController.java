@@ -2,7 +2,8 @@ package com.pb.personalblog.controller;
 
 import com.pb.personalblog.pojo.Blog;
 import com.pb.personalblog.pojo.User;
-import com.pb.personalblog.vo.satistics;
+import com.pb.personalblog.service.CommonService;
+import com.pb.personalblog.vo.Satistics;
 import com.pb.personalblog.service.BlogService;
 import com.pb.personalblog.service.TagService;
 import com.pb.personalblog.service.TypeService;
@@ -29,6 +30,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/admin")
 public class BlogController {
+    @Autowired
+    private CommonService commonService;
 
     private static final String INPUT = "admin/blogsInput";
     private static final String LIST = "admin/blogs";
@@ -54,7 +57,7 @@ public class BlogController {
         //传递所有分类到前端
         model.addAttribute("types", typeService.listType());
         model.addAttribute("page", blogService.listBlog(pageable, blog));
-        model.addAttribute("btn", new satistics());
+        model.addAttribute("btn", new Satistics(commonService.getArticle(), commonService.getVisit(), commonService.getComment()));
         return LIST;
     }
 
@@ -70,7 +73,7 @@ public class BlogController {
     public String input(Model model) {
         setTypeAndTag(model);
         model.addAttribute("blog", new Blog());
-        model.addAttribute("btn", new satistics());
+        model.addAttribute("btn", new Satistics(commonService.getArticle(), commonService.getVisit(), commonService.getComment()));
         return INPUT;
     }
 
@@ -88,7 +91,7 @@ public class BlogController {
         blog.init();
         //获取前台传的id
         model.addAttribute("blog", blog);
-        model.addAttribute("btn", new satistics());
+        model.addAttribute("btn", new Satistics(commonService.getArticle(), commonService.getVisit(), commonService.getComment()));
         return INPUT;
     }
 

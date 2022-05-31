@@ -1,6 +1,8 @@
 package com.pb.personalblog.controller;
 
-import com.pb.personalblog.vo.satistics;
+import com.pb.personalblog.service.CommonService;
+import com.pb.personalblog.vo.Satistics;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+    @Autowired
+    private CommonService commonService;
+
     /**
      * 管理页面主页
      *
@@ -22,8 +27,7 @@ public class AdminController {
      */
     @GetMapping("/home")
     public String test1(Model model) {
-        satistics s = new satistics();
-        model.addAttribute("btn", s);
+        model.addAttribute("btn", new Satistics(commonService.getArticle(), commonService.getVisit(), commonService.getComment()));
         return "admin/home";
     }
 

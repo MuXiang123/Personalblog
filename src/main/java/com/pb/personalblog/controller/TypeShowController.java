@@ -41,6 +41,6 @@ public class TypeShowController {
         model.addAttribute("types", types);
         model.addAttribute("page", blogService.listBlog(pageable, blogQuery));
         model.addAttribute("activeTypeId", id);
-        return "admin/types";
+        return "foreground/types";
     }
 }
