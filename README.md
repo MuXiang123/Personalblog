@@ -4,7 +4,7 @@
 基于Spring Boot、JPA、Thymeleaf搭建的简易个人博客
 
 #### 软件架构
-软件架构说明
+软件架构说明aaaa
 
 
 #### 安装教程

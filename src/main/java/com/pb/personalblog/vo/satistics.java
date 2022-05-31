@@ -9,7 +9,15 @@ public class satistics {
     int article = 1;
     int visit = 2;
     int comment = 3;
-    int word = 4;
+
+    public satistics(int article, int visit, int comment) {
+        this.article = article;
+        this.visit = visit;
+        this.comment = comment;
+    }
+
+    public satistics() {
+    }
 
     public int getArticle() {
         return article;
@@ -35,9 +43,6 @@ public class satistics {
         this.comment = comment;
     }
 
-    public int getWord() {
-        return word;
-    }
 
     @Override
     public String toString() {
@@ -45,11 +50,7 @@ public class satistics {
                 "article=" + article +
                 ", visit=" + visit +
                 ", comment=" + comment +
-                ", word=" + word +
                 '}';
     }
 
-    public void setWord(int word) {
-        this.word = word;
-    }
 }
