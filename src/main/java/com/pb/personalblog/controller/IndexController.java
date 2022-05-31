@@ -45,12 +45,12 @@ public class IndexController {
         return "foreground/search";
     }
 
-//    @GetMapping("/blog/{id}")
-//    //    通过 @PathVariable 可以将URL中占位符参数{xxx}绑定到处理器类的方法形参中@PathVariable(“xxx“)
-//    public String blog(@PathVariable Long id, Model model) {
-//        model.addAttribute("blog", blogService.getAndConvert(id));
-//        return "blog";
-//    }
+    @GetMapping("/blog/{id}")
+    //    通过 @PathVariable 可以将URL中占位符参数{xxx}绑定到处理器类的方法形参中@PathVariable(“xxx“)
+    public String blog(@PathVariable Long id, Model model) {
+        model.addAttribute("blog", blogService.getAndConvert(id));
+        return "foreground/blog";
+    }
 
     @GetMapping("/footer/newblog")
     public String newblogs(Model model) {

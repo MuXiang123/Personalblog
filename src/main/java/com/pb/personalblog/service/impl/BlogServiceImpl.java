@@ -26,6 +26,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author 93103
+ */
 @Service
 public class BlogServiceImpl implements BlogService {
     @Autowired
@@ -36,11 +39,11 @@ public class BlogServiceImpl implements BlogService {
         return blogRepository.getOne(id);
     }
 
-    //编辑器转换为html
+    //编辑器将数据库正文内容转换为html
     @Transactional
     @Override
     public Blog getAndConvert(Long id) {
-        Blog blog = blogRepository.getOne(id);
+        Blog blog = blogRepository.findById(id).get();
         if (blog == null) {
             throw new NotFoundException("该博客不存在");
         }
@@ -48,7 +51,6 @@ public class BlogServiceImpl implements BlogService {
         BeanUtils.copyProperties(blog, b);
         String content = b.getContent();
         b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
-
         blogRepository.updateViews(id);
         return b;
     }

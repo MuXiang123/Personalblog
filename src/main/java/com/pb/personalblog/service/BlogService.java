@@ -10,12 +10,6 @@ import java.util.List;
 public interface BlogService {
     Blog getBlog(Long id);
 
-    /**
-     * 编辑器转换为html
-     *
-     * @param id
-     * @return
-     */
     Blog getAndConvert(Long id);
 
     Page<Blog> listBlog(Pageable pageable, BlogQuery blog);
