@@ -40,7 +40,7 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
     List<Blog> findTop(Pageable pageable);
 
     /**
-     * 根据博客id查询
+     * 根据博客标题或内容查询
      *
      * @param query
      * @param pageable

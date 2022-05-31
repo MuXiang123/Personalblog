@@ -24,9 +24,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> listCommentByBlogId(Long blogId) {
         Sort sort = new Sort(Sort.Direction.DESC, "createTime");
-//        List<Comment> comments = commentRepository.findByBlogIdAndParentCommentNull(blogId, sort);
-//        return eachComment(comments);
-        return commentRepository.findByBlogId(blogId, sort);
+        //拿到第一层评论数据
+        List<Comment> comments = commentRepository.findByBlogIdAndParentCommentNull(blogId, sort);
+        return eachComment(comments);
     }
 
     @Transactional
@@ -52,6 +52,7 @@ public class CommentServiceImpl implements CommentService {
      */
     private List<Comment> eachComment(List<Comment> comments) {
         List<Comment> commentsView = new ArrayList<>();
+        //复制新集合，防止对数据库数据产生改变
         for (Comment comment : comments) {
             Comment c = new Comment();
             BeanUtils.copyProperties(comment, c);
@@ -85,13 +86,14 @@ public class CommentServiceImpl implements CommentService {
     private List<Comment> tempReplys = new ArrayList<>();
 
     /**
-     * 递归迭代，剥洋葱
+     * 递归迭代
      *
      * @param comment 被迭代的对象
      * @return
      */
     private void recursively(Comment comment) {
-        tempReplys.add(comment);//顶节点添加到临时存放集合
+        //顶节点添加到临时存放集合
+        tempReplys.add(comment);
         if (comment.getReplyComments().size() > 0) {
             List<Comment> replys = comment.getReplyComments();
             for (Comment reply : replys) {

@@ -13,7 +13,6 @@ import java.util.List;
  */
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
-    List<Comment> findByBlogId(Long blogId, Sort sort);
 
     /**
      * 查询评论总数
@@ -23,4 +22,5 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Query("select count(id) from Comment ")
     int commentCount();
 
+    List<Comment> findByBlogIdAndParentCommentNull(Long blogId, Sort sort);
 }

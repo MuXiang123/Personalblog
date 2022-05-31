@@ -44,7 +44,6 @@ public class CommentController {
     public String post(Comment comment, HttpSession session) {
         Long blogId = comment.getBlog().getId();
         comment.setBlog(blogService.getBlog(blogId));
-
         User user = (User) session.getAttribute("user");
         if (user != null) {
     //    简单处理头像

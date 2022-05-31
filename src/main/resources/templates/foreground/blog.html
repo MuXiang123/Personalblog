@@ -434,7 +434,6 @@ h5,h6{font-size:1em;}
                                             <div class="ui mini basic teal left pointing label m-padded-mini"
                                                  th:if="${reply.adminComment}">博主
                                             </div>
-
                                             &nbsp;<span th:text="|@ ${reply.parentComment.nickname}|" class="m-teal">@ 小白</span>
                                         </a>
                                         <div class="metadata">
@@ -719,7 +718,7 @@ h5,h6{font-size:1em;}
     });
 
     $(function () {
-        $('#comment-container').load(/*[[@{/comments/{blogId}(blogId=${blog.id})}]]*/"comments/12")
+        $('#comment-container').load(/*[[@{/comments/{blogId}(blogId=${blog.id})}]]*/"comments/66")
     });
 
     $('#commentpost-btn').click(function () {
