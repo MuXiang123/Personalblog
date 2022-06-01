@@ -39,10 +39,10 @@
                 </div>
             </div>
         </div>
-        <div class="ui attached segment">
+        <div class="ui attached segment centered aligned">
             <!--            图片区域-->
             <img src="https://unsplash.it/800/450?image=1005" th:src="@{${blog.firstPicture}}" alt=""
-                 class="ui fluid rounded image">
+                 class="ui fluid big rounded image centered aligned">
         </div>
         <div class="ui attached segment">
             <!--            内容-->
@@ -399,7 +399,7 @@ h5,h6{font-size:1em;}
                 <div th:fragment="commentList">
                     <div class="ui threaded comments" style="max-width: 100%">
                         <h3 class="ui dividing header">评论</h3>
-                        <div class="comment" th:each="comment : ${blog.comments}">
+                        <div class="comment" th:each="comment : ${commentlist}">
                             <a class="avatar">
                                 <img src="https://unsplash.it/800/450?image=1005" th:src="@{${comment.avatar}}">
                             </a>
@@ -449,7 +449,6 @@ h5,h6{font-size:1em;}
                                                onclick="reply(this)">回复</a>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -571,7 +570,7 @@ h5,h6{font-size:1em;}
 <br>
 <br>
 <!--底部-->
-<footer th:insert="_fragments :: footer" class="ui inverted segment vertical m-padded-tb-massive">
+<footer th:insert="_fragments :: footer" class="ui inverted segment vertical m-padded-tb-large">
 </footer>
 
 <th:block th:fragments="script">
@@ -716,9 +715,8 @@ h5,h6{font-size:1em;}
             }
         }
     });
-
     $(function () {
-        $('#comment-container').load(/*[[@{/comments/{blogId}(blogId=${blog.id})}]]*/"comments/66")
+        $("#comment-container").load(/*[[@{/comments/{id}(id=${blog.id})}]]*/"comments/6");
     });
 
     $('#commentpost-btn').click(function () {
@@ -739,7 +737,7 @@ h5,h6{font-size:1em;}
             "email": $("[name='email']").val(),
             "content": $("[name='content']").val(),
         }, function (responseTxt, statusTxt, xhr) {
-            $(window).scrollTo($('#comment-container'), 500);
+            //  $(window).scrollTo($('#comment-container'), 500);
             clearContent();
         });
     }
@@ -755,7 +753,6 @@ h5,h6{font-size:1em;}
         var commentNickname = $(obj).data('commentnickname');
         $("[name='content']").attr("placeholder", "@" + commentNickname).focus();
         $("[name='parentComment.id']").val(commentId);
-        $(window).scrollTo($('#comment-form'), 500);
     }
 </script>
 </body>

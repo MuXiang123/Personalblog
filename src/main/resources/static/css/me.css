@@ -189,5 +189,12 @@ body {
     .m-mobile-wide {
         width: 100% !important;
     }
+
+    .b-firstpicture {
+        width: 100px;
+    !important;
+        height: 50px;
+    !important;
+    }
 }
 

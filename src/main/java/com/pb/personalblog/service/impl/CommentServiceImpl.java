@@ -23,10 +23,10 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> listCommentByBlogId(Long blogId) {
-        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
-        //拿到第一层评论数据
-        List<Comment> comments = commentRepository.findByBlogIdAndParentCommentNull(blogId, sort);
-        return eachComment(comments);
+        //获取顶层评论
+        List<Comment> comments = commentRepository.findByBlogIdAndParentCommentNull(blogId, Sort.by(Sort.Direction.DESC, "createTime"));
+        List<Comment> commentlist = eachComment(comments);
+        return commentlist;
     }
 
     @Transactional
@@ -70,20 +70,20 @@ public class CommentServiceImpl implements CommentService {
     private void combineChildren(List<Comment> comments) {
 
         for (Comment comment : comments) {
-            List<Comment> replys1 = comment.getReplyComments();
-            for (Comment reply1 : replys1) {
-                //循环迭代，找出子代，存放在tempReplys中
-                recursively(reply1);
+            List<Comment> replies = comment.getReplyComments();
+            for (Comment reply : replies) {
+                //循环迭代，找出子代，存放在tempReplies中
+                recursively(reply);
             }
             //修改顶级节点的reply集合为迭代处理后的集合
-            comment.setReplyComments(tempReplys);
+            comment.setReplyComments(tempReplies);
             //清除临时存放区
-            tempReplys = new ArrayList<>();
+            tempReplies = new ArrayList<>();
         }
     }
 
     //存放迭代找出的所有子代的集合
-    private List<Comment> tempReplys = new ArrayList<>();
+    private List<Comment> tempReplies = new ArrayList<>();
 
     /**
      * 递归迭代
@@ -93,15 +93,12 @@ public class CommentServiceImpl implements CommentService {
      */
     private void recursively(Comment comment) {
         //顶节点添加到临时存放集合
-        tempReplys.add(comment);
+        tempReplies.add(comment);
         if (comment.getReplyComments().size() > 0) {
-            List<Comment> replys = comment.getReplyComments();
-            for (Comment reply : replys) {
-                tempReplys.add(reply);
-                if (reply.getReplyComments().size() > 0) {
-                    recursively(reply);
-                }
+            List<Comment> replies = comment.getReplyComments();
+            for (Comment reply : replies) {
+                recursively(reply);
             }
         }
     }
-}
+    }

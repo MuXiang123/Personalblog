@@ -32,9 +32,9 @@
             <div class="ui padded vertical segment m-padded-tb-large" th:each="blog : ${page.content}">
                 <div class="ui middle aligned mobile reversed stackable grid">
                     <div class="eleven wide column">
-                        <h3 class="ui header"><a href="#" class="m-black" target="_blank"
+                        <h2 class="ui header"><a href="#" class="m-black" target="_blank"
                                                  th:href="@{/blog/{id}(id=${blog.id})}"
-                                                 th:text="${blog.title}"></a></h3>
+                                                 th:text="${blog.title}"></a></h2>
                         <p class="m-text" th:text="${blog.content}">描述</p>
                         <div class="ui grid">
                             <div class="eleven wide column">
@@ -56,15 +56,15 @@
                                 </div>
                             </div>
                             <div class="right aligned five wide column">
-                                <a href="#" class="ui teal basic label m-padded-tiny m-text-thin"
-                                   th:text="${blog.type.name}">认知升级</a>
+                                <a href="#" class="ui teal basic label m-padded-pd m-text-thin"
+                                   th:text="${blog.type.name}" th:href="@{/types/{id}(id=${blog.type.id})}">认知升级</a>
                             </div>
                         </div>
                     </div>
                     <div class="five wide column">
                         <a href="#" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}">
                             <img src="https://unsplash.it/200/100?image=1005"
-                                 th:src="@{${blog.firstPicture}}" alt="" class="ui rounded images">
+                                 th:src="@{${blog.firstPicture}}" alt="" class="ui fluid large rounded image">
                         </a>
                     </div>
                 </div>

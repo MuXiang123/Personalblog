@@ -34,6 +34,8 @@ public class Blog {
     private boolean published;
     //发布还是保存草稿
     private boolean recommend;
+    //博客描述
+    private String description;
     //是否推荐
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
@@ -201,6 +203,14 @@ public class Blog {
         this.tagIds = tagsToIds(this.getTags());
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     //分隔获取的id
     private String tagsToIds(List<Tag> tags) {
         if (!tags.isEmpty()) {
@@ -219,6 +229,7 @@ public class Blog {
             return tagIds;
         }
     }
+
     @Override
     public String toString() {
         return "Blog{" +
@@ -233,8 +244,14 @@ public class Blog {
                 ", commentabled=" + commentabled +
                 ", published=" + published +
                 ", recommend=" + recommend +
+                ", description='" + description + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", type=" + type +
+                ", tag=" + tag +
+                ", user=" + user +
+                ", comments=" + comments +
+                ", tagIds='" + tagIds + '\'' +
                 '}';
     }
 

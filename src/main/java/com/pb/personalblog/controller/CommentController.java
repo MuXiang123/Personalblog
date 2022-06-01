@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @Controller
@@ -33,9 +34,10 @@ public class CommentController {
     //    查询评论列表
     @GetMapping("/comments/{blogId}")
     public String comments(@PathVariable Long blogId, Model model) {
-        model.addAttribute("comments", commentService.listCommentByBlogId(blogId));
+        List<Comment> commentlist = commentService.listCommentByBlogId(blogId);
+        model.addAttribute("commentlist", commentlist);
 //        返回一个blog页面下的commentList片段
-        return "blog :: commentList";
+        return "foreground/blog :: commentList";
     }
 
 
@@ -53,7 +55,7 @@ public class CommentController {
             comment.setAvatar(avatar);
         }
         commentService.saveComment(comment);
-        return "redirect:foreground/comments/" + blogId;
+        return "redirect:/foreground/comments/" + blogId;
     }
 
 

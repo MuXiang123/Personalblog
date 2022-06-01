@@ -28,8 +28,16 @@ public class TypeShowController {
     @Autowired
     private BlogService blogService;
 
+    @GetMapping("/types")
+    public String types(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+        List<Type> types = typeService.listTypeTop(10000);
+        model.addAttribute("types", types);
+        model.addAttribute("page", blogService.listBlog(pageable));
+        return "foreground/types";
+    }
+
     @GetMapping("/types/{id}")
-    public String types(@PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+    public String types(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                         @PathVariable Long id, Model model) {
 //        倒叙排列
         List<Type> types = typeService.listTypeTop(10000);

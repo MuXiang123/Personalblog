@@ -15,41 +15,42 @@
 <nav th:fragment="menu(n)" class="ui inverted attached segment">
   <div class="ui menu inverted secondary stackable">
     <div class="ui container">
-      <h2 class="ui teal header item">城院TOP博客</h2>
-      <a href="" class="item" th:classappend="${n==1} ?'active'"><i class="home icon"></i>首页</a>
-      <a href="" class="item" th:classappend="${n==2} ?'active'"><i class="idea icon"></i>分类</a>
-      <a href="" class="item" th:classappend="${n==3} ?'active'"><i class="tags icon"></i>标签</a>
-      <a href="" class="item" th:classappend="${n==4} ?'active'"><i class="clone icon"></i>归档</a>
-      <a href="" class="item" th:classappend="${n==5} ?'active'"><i class="info icon"></i>关于我</a>
-      <div class="right item m-item m-mobile-hide">
-        <form name="search" action="#" th:action="@{/search}" target="_blank" method="post">
-          <div class="ui icon m-margin-tb-tiny item input transparent inverted">
-            <input type="text" name="query" placeholder="Search.." th:value="${query}">
-            <i class="search icon link" onclick="document.forms['search'].submit()"></i>
-          </div>
-        </form>
+        <h2 class="ui teal header item">城院TOP博客</h2>
+        <a href="" th:href="@{/}" class="item" th:classappend="${n==1} ?'active'"><i class="home icon"></i>首页</a>
+        <a href="" th:href="@{/types}" class="item" th:classappend="${n==2} ?'active'"><i class="idea icon"></i>分类</a>
+        <a href="" th:href="@{/tags}" class="item" th:classappend="${n==3} ?'active'"><i class="tags icon"></i>标签</a>
+        <a href="" th:href="@{/}" class="item" th:classappend="${n==4} ?'active'"><i class="clone icon"></i>归档</a>
+        <a href="" th:href="@{/about}" class="item" th:classappend="${n==5} ?'active'"><i class="info icon"></i>关于我</a>
+        <div class="right item m-item m-mobile-hide">
+            <form name="search" action="#" th:action="@{/search}" target="_blank" method="post">
+                <div class="ui icon m-margin-tb-tiny item input transparent inverted">
+                    <input type="text" name="query" placeholder="Search.." th:value="${query}">
+                    <i class="search icon link" onclick="document.forms['search'].submit()"></i>
+                </div>
+            </form>
 
-      </div>
+        </div>
     </div>
   </div>
 </nav>
 
 <!--底部-->
-<footer class="ui inverted segment vertical m-padded-tb-massive" th:fragment="footer">
-  <div class="ui container center aligned">
-    <div class="ui grid inverted divided stackable">
-      <div class="three wide column">
-        <div class="item">
-          <img class="ui rounded image" src="../../static/img/xys.jpg" style="width:98px" th:src="@{/img/xys.jpg}">
-        </div>
-      </div>
-      <div class="three wide column">
-        <h4 class="ui inverted header">最新博客</h4>
-        <div class="ui inverted link list">
-          <a href="" class="item">用户故事</a>
-          <a href="" class="item">关于刻意练习的清单</a>
-          <a href="" class="item">失败要趁早</a>
-        </div>
+<footer class="ui inverted segment vertical m-padded-tb-large" th:fragment="footer">
+    <div class="ui container center aligned">
+        <div class="ui grid inverted divided stackable">
+            <div class="three wide column">
+                <div class="item">
+                    <img class="ui rounded image" src="../../static/img/xys.jpg" style="width:98px"
+                         th:src="@{/img/xys.jpg}">
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header">技术简介</h4>
+                <div class="ui inverted link list">
+                    <a href="" class="item">springboot</a>
+                    <a href="" class="item">semantic ui</a>
+                    <a href="" class="item">mysql</a>
+                </div>
       </div>
       <div class="three wide column">
         <h4 class="ui inverted header">联系我</h4>
@@ -66,7 +67,6 @@
     <div class="ui inverted section divider"></div>
     <p class="m-text-thin m-text-spaced m-text-lined m-opacity-mini">by zhk,xys,yrh,zzb</p>
   </div>
-
 </footer>
 
 <th:block th:fragments="script">
@@ -109,7 +109,7 @@
             });
   </script>
   <script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.2/semantic.min.js"></script>
 
 </th:block>
 </body>
