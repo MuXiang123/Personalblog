@@ -159,7 +159,7 @@
                     </div>
                     <div class="ui teal segment">
                         <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny"
-                           th:each="tag:${tags}">
+                           th:each="tag:${tags}" th:href="@{/tags/{id}(id=${tag.id})}">
                             <span th:text="${tag.name}">方法论</span>
                             <div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div>
                         </a>

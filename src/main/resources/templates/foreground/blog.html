@@ -715,9 +715,12 @@ h5,h6{font-size:1em;}
             }
         }
     });
+
+    // 加载页面时加载评论
     $(function () {
         $("#comment-container").load(/*[[@{/comments/{id}(id=${blog.id})}]]*/"comments/6");
     });
+
 
     $('#commentpost-btn').click(function () {
         var boo = $('.ui.form').form('validate form');
@@ -727,17 +730,17 @@ h5,h6{font-size:1em;}
         } else {
             console.log('校验失败');
         }
-    })
+    });
 
     function postData() {
-        $('#comment-container').load(/*[[@{/comments}]]*/"", {
+        $("#comment-container").load(/*[[@{/comments}]]*/"", {
             "parentComment.id": $("[name='parentComment.id']").val(),
             "blog.id": $("[name='blog.id']").val(),
             "nickname": $("[name='nickname']").val(),
             "email": $("[name='email']").val(),
-            "content": $("[name='content']").val(),
+            "content": $("[name='content']").val()
         }, function (responseTxt, statusTxt, xhr) {
-            //  $(window).scrollTo($('#comment-container'), 500);
+            $(window).scrollTo($('#comment-container'), 500);
             clearContent();
         });
     }

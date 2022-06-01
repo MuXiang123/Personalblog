@@ -57,6 +57,4 @@ public class CommentController {
         commentService.saveComment(comment);
         return "redirect:/foreground/comments/" + blogId;
     }
-
-
 }
