@@ -64,4 +64,21 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
      */
     @Query("select sum(views) from Blog")
     int viewSum();
+
+    /**
+     * 获取博客创建年份数组
+     *
+     * @return
+     */
+    @Query("select function('date_format',b.updateTime,'%Y') as year from Blog b where b.published = true group by function('date_format',b.updateTime,'%Y') order by year desc ")
+    List<String> findGroupYear();
+
+    /**
+     * 根据年份获取博客
+     *
+     * @return
+     */
+    @Query("select b from Blog b where b.published = true and function('date_format',b.updateTime,'%Y') = ?1")
+    List<Blog> findByYear(String year);
 }
+
