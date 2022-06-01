@@ -14,6 +14,8 @@ public interface BlogService {
 
     Page<Blog> listBlog(Pageable pageable, BlogQuery blog);
 
+    Page<Blog> listBlog(Long tagId, Pageable pageable);
+
     Page<Blog> findByQuery(String query, Pageable pageable);
 
     //推荐博客
