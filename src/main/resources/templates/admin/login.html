@@ -28,12 +28,18 @@
         }
 
         .ui.container {
-            margin-top: 6rem;
-            max-width: 22rem !important;
+            margin-top: 10rem;
+            max-width: 20rem !important;
         }
 
         .ui.large.form > .field:first-child {
-            margin-bottom: 0;
+            margin-bottom: 10px;
+        }
+
+        .item {
+            padding: .25rem .5rem;
+            font-size: .875rem;
+            line-height: 10;
         }
 
     </style>
@@ -42,18 +48,11 @@
 <body id="root">
 <div class="ui center aligned grid">
     <div class="ui container">
-        <div class="ui label circular">
+        <div class="ui label circular" style="display:flex;justify-content: center; align-items:center;">
             <h3 th:text="#{login.tip}">欢迎！请登录</h3>
         </div>
         <div class="ui hidden divider"></div>
-        <div class="ui floating dropdown button">
-            <div class="text">更改语言</div>
-            <i class="angle down icon"></i>
-            <div class="menu">
-                <a class="item" th:href="@{/admin(l='zh_CN')}"><i class="bookmark icon"></i>中文</a>
-                <a class="item" th:href="@{/admin(l='en_US')}"><i class="bookmark icon"></i>English</a>
-            </div>
-        </div>
+
         <!--        登录表单-->
         <form class="ui large form" method="post" action="#" th:action="@{/admin/login}" th:method="post">
             <div class="field">
@@ -68,12 +67,19 @@
                     <input type="password" name="password" placeholder="密码" th:placeholder="#{login.password}">
                 </div>
             </div>
-            <button class="ui fluid large primary circular button" type="submit" th:text="#{login.button}">登 录</button>
+            <button class="ui fluid large primary circular button" style="width: auto;margin: auto;" type="submit"
+                    th:text="#{login.button}">登 录
+            </button>
 
             <div class="ui error mini message"></div>
             <div class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="#{login.message}">
                 用户名和密码错误
             </div>
+            <div class="ui" style="display:flex;justify-content: center;align-items:center;">
+                <a class="item" th:href="@{/admin(l='zh_CN')}"><i class="bookmark icon"></i>中文</a>
+                <a class="item" th:href="@{/admin(l='en_US')}"><i class="bookmark icon"></i>English</a>
+            </div>
+
         </form>
     </div>
 </div>

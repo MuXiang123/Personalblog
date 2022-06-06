@@ -63,7 +63,7 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
      * @return
      */
     @Query("select sum(views) from Blog")
-    int viewSum();
+    Integer viewSum();
 
     /**
      * 获取博客创建年份数组

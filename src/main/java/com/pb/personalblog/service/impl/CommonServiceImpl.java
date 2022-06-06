@@ -45,8 +45,12 @@ public class CommonServiceImpl implements CommonService {
         if (o != null) {
             count = (int) o;
         } else {
-            count = blogRepository.viewSum();
-            redisTemplate.opsForValue().set("visit", count, 60 * 60 * 12, TimeUnit.SECONDS);
+            if (blogRepository.viewSum() != null) {
+                count = blogRepository.viewSum();
+                redisTemplate.opsForValue().set("visit", count, 60 * 60 * 12, TimeUnit.SECONDS);
+            } else {
+                count = 0;
+            }
         }
         return count;
     }
